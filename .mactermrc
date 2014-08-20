@@ -1,0 +1,30 @@
+
+HOSTNAME=`hostname -s`
+PARAMS=`grep "${HOSTNAME}.*${USER}" $HOME/.macterm-config | sed -e 's/^.*_//'`
+eval $PARAMS
+
+if [ "$TERM_PROGRAM" == "Apple_Terminal" ]; then
+    TCOLOR="\033]11;#${BGCOLOR}"
+    FTCOLOR="\033]10;#${FGCOLOR}"
+    TERM_COLORS="\007${TCOLOR}\007${FTCOLOR}\007"
+    TITLE="${TITLE}"
+else
+    TCOLOR="\033]Ph${BGCOLOR}\033"
+    FTCOLOR="\033]Pg${FGCOLOR}\033"
+    TERM_COLORS="\[${TCOLOR}\\\\${FTCOLOR}\\\\\]"
+    TITLE="${TITLE}"
+fi
+
+_powerline_bin="${HOME}/Library/Python/2.7/lib/python/site-packages/powerline/bindings/bash/powerline.sh"
+_powerline_cmd=". ${_powerline_bin}"
+
+if [ -e ${_powerline_bin} ]; then
+    ${_powerline_cmd}
+fi
+
+
+function _update_ps1() {
+    PS1="${TERM_COLORS}${PS1}"
+}
+
+export PROMPT_COMMAND="${PROMPT_COMMAND}"$'\n'"_update_ps1"
