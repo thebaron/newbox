@@ -1,2 +1,6 @@
 [push]
 	default = simple
+
+[alias]
+	up = !git pull --rebase --prune $@ && git submodule update --init --recursive
+

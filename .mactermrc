@@ -15,13 +15,12 @@ else
     TITLE="${TITLE}"
 fi
 
-_powerline_bin="${HOME}/Library/Python/2.7/lib/python/site-packages/powerline/bindings/bash/powerline.sh"
+_powerline_bin="/Users/bchandler/bin/powerline.sh"
 _powerline_cmd=". ${_powerline_bin}"
 
 if [ -e ${_powerline_bin} ]; then
     ${_powerline_cmd}
 fi
-
 
 function _update_ps1() {
     PS1="${TERM_COLORS}${PS1}"

@@ -1,6 +1,6 @@
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-export PATH=$PATH:/usr/local/bin
+export PATH=/usr/local/bin:$PATH
 
 alias vi=vim
 
