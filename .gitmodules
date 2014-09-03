@@ -4,3 +4,6 @@
 [submodule "fonts/powerline-fonts"]
 	path = fonts/powerline-fonts
 	url = https://github.com/Lokaltog/powerline-fonts.git
+[submodule "fonts/Fira"]
+	path = fonts/Fira
+	url = https://github.com/mozilla/Fira
