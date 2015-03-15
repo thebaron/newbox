@@ -1,4 +1,2 @@
-hostname username_BGCOLOR="2c3149"
-hostname username_FGCOLOR="d6eafc"
-hostname root_FGCOLOR="d83846"
-hostname root_BGCOLOR="301010"
+user@host                       |BGCOLOR="2c2129"; FGCOLOR="d6eafc"; TITLE="Zardoz"  
+/Users                          | BGCOLOR="4c2921" FGCOLOR="d6eafc"

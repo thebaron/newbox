@@ -1,28 +1,50 @@
 
+
+function _setColors() {
+    if [ "$TERM_PROGRAM" == "Apple_Terminal" ]; then
+        TCOLOR="\033]11;#${BGCOLOR}"
+        FTCOLOR="\033]10;#${FGCOLOR}"
+        TERM_COLORS="\007${TCOLOR}\007${FTCOLOR}\007"
+        TITLE="${TITLE}"
+    else
+        TCOLOR="\033]Ph${BGCOLOR}\033"
+        FTCOLOR="\033]Pg${FGCOLOR}\033"
+        TERM_COLORS="\[${TCOLOR}\\\\${FTCOLOR}\\\\\]"
+        TITLE="${TITLE}"
+    fi
+}
+
 HOSTNAME=`hostname -s`
-PARAMS=`grep "${HOSTNAME}.*${USER}" $HOME/.macterm-config | sed -e 's/^.*_//'`
+
+
+PARAMS=`egrep "^(${USER}@${HOSTNAME}|${PWD})" $HOME/.macterm-config | tail -1 | sed -Ee "s/(.*)\|//;"`
 eval $PARAMS
+export _DEFAULT_COLORS=$PARAMS
+_setColors
 
-if [ "$TERM_PROGRAM" == "Apple_Terminal" ]; then
-    TCOLOR="\033]11;#${BGCOLOR}"
-    FTCOLOR="\033]10;#${FGCOLOR}"
-    TERM_COLORS="\007${TCOLOR}\007${FTCOLOR}\007"
-    TITLE="${TITLE}"
-else
-    TCOLOR="\033]Ph${BGCOLOR}\033"
-    FTCOLOR="\033]Pg${FGCOLOR}\033"
-    TERM_COLORS="\[${TCOLOR}\\\\${FTCOLOR}\\\\\]"
-    TITLE="${TITLE}"
-fi
-
-_powerline_bin="/Users/bchandler/bin/powerline.sh"
+_powerline_bin="/Users/thebaron/bin/powerline.sh"
 _powerline_cmd=". ${_powerline_bin}"
 
 if [ -e ${_powerline_bin} ]; then
     ${_powerline_cmd}
 fi
 
+
 function _update_ps1() {
+    if [ "$OLD_PS1" != "$PS1" ]; then
+
+        DIRS=""; BN=${PWD}; while [ "${BN}" != "/" ]; do DIRS="${BN}|${DIRS}"; BN=`dirname ${BN}`; done; DIRS="^(${DIRS}/)";
+        PARAMS=`egrep "^(${USER}@${HOSTNAME}|${DIRS}\s)" $HOME/.macterm-config | tail -1 | sed -Ee "s/(.*)\|//;"`
+        if [ "x$PARAMS" == "x" ]; then
+            PARAMS = $_DEFAULT_COLORS
+        fi
+
+        eval $PARAMS
+        _setColors
+
+        OLD_PS1=${PS1}
+    fi
+
     PS1="${TERM_COLORS}${PS1}"
 }
 
