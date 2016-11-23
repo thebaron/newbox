@@ -1,0 +1,8 @@
+[user]
+	name = Baron Chandler
+	email = baron@venturecranial.com
+[push]
+	default = simple
+
+[alias]
+        up = !git pull --rebase --prune $@ && git submodule update --init --recursive

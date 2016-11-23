@@ -17,8 +17,8 @@ function _setColors() {
 HOSTNAME=`hostname -s`
 
 
-PARAMS=`egrep "^(${USER}@${HOSTNAME}|${PWD})" $HOME/.macterm-config | tail -1 | sed -Ee "s/(.*)\|//;"`
-eval $PARAMS
+PARAMS=`egrep "^(default|${USER}@|@${HOSTNAME}|${USER}@${HOSTNAME}|${PWD}\s)" $HOME/.macterm-config | tail -1 | sed -Ee "s/(.*)\|//;"`
+export PARAMS
 export _DEFAULT_COLORS=$PARAMS
 _setColors
 
@@ -33,10 +33,10 @@ fi
 function _update_ps1() {
     if [ "$OLD_PS1" != "$PS1" ]; then
 
-        DIRS=""; BN=${PWD}; while [ "${BN}" != "/" ]; do DIRS="${BN}|${DIRS}"; BN=`dirname ${BN}`; done; DIRS="^(${DIRS}/)";
-        PARAMS=`egrep "^(${USER}@${HOSTNAME}|${DIRS}\s)" $HOME/.macterm-config | tail -1 | sed -Ee "s/(.*)\|//;"`
+        DIRS=""; BN=${PWD}; while [ "${BN}" != "/" ]; do DIRS="${BN}|${DIRS}"; BN=`dirname "${BN}"`; done; DIRS="^(${DIRS}/)";
+        PARAMS=`egrep "^(default|${USER}@\s|@${HOSTNAME}|${USER}@${HOSTNAME}|${DIRS}\s)" $HOME/.macterm-config | tail -1 | sed -Ee "s/(.*)\|//;"`
         if [ "x$PARAMS" == "x" ]; then
-            PARAMS = $_DEFAULT_COLORS
+            PARAMS=$_DEFAULT_COLORS
         fi
 
         eval $PARAMS
