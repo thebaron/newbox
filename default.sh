@@ -102,3 +102,6 @@ sudo launchctl load -w /System/Library/LaunchDaemons/ssh.plist
 defaults write com.apple.screensaver askForPasswordDelay -int 0
 defaults write com.apple.screensaver askForPassword -int 1
 
+# visual studio code fix for key repeat
+defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
+
