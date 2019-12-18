@@ -1,5 +1,8 @@
 #! /usr/bin/env bash
 
+# install brew if needed
+brew commands  2&>1 > /dev/null || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
 # Update and stuff
 brew update
 brew upgrade
@@ -7,8 +10,10 @@ brew upgrade
 # install a bunch of stuff
 
 brew tap jmespath/jmespath
+
 brew install ag \
              bat \
+             cmake \
              cookiecutter \
              direnv \
              entr \
@@ -35,7 +40,6 @@ brew install ag \
              pwgen \
              pyenv \
              pyenv-virtualenv \
-             python \
              python3 \
              rclone \
              readline \
@@ -45,6 +49,7 @@ brew install ag \
              telnet \
              terraform \
              tmux \
+             tree \
              xz \
              youtube-dl 
 
@@ -60,7 +65,7 @@ brew install moreutils
 brew install findutils
 
 # Install GNU `sed`, overwriting the built-in `sed`.
-brew install gnu-sed --with-default-names
+brew install gnu-sed 
 
 # Install Bash 4.
 brew install bash
@@ -73,16 +78,37 @@ if ! fgrep -q "${BREW_PREFIX}/bin/bash" /etc/shells; then
 fi;
 
 # Wget with IRI support
-brew install wget --with-iri
+brew install wget 
 
 # Install updated vim    
-brew install vim --with-override-system-vi
+brew install vim 
 
 # Install font tools.
 brew tap bramstein/webfonttools
 brew install sfnt2woff
 brew install sfnt2woff-zopfli
 brew install woff2
+brew tap homebrew/cask-fonts
+
+# Install some completions
+brew install brew-cask-completion \
+             django-completion \
+             pip-completion 
+
+# Install Docker
+brew install docker \ 
+             docker-machine \
+             docker-machine-driver-xhyve
+
+brew services start docker-machine
+
+# Add docker group
+sudo dseditgroup -o create docker
+sudo dseditgroup -o edit -a thebaron -t user docker
+
+# Make sure xhyve is setuid
+sudo chown root:docker /usr/local/bin/docker-machine-driver-xhyve
+sudo chmod u+s         /usr/local/bin/docker-machine-driver-xhyve
 
 # done
 brew cleanup
