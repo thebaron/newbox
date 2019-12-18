@@ -1,41 +1,88 @@
-#! /bin/sh
+#! /usr/bin/env bash
 
-brew install ag
-brew install bat
-brew install cookiecutter
-brew install coreutils
-brew install direnv
-brew install entr
-brew install fzf
-brew install gdbm
-brew install gnupg
-brew install gnutls
-brew install htop
-brew install jq
-brew install mas
-brew install mycli
-brew install node
-brew install noti
-brew install oniguruma
-brew install openssl
-brew install packer
-brew install pgcli
-brew install pkg-config
-brew install prettyping
-brew install pwgen
-brew install pyenv
-brew install pyenv-virtualenv
-brew install python
-brew install python3
-brew install rclone
-brew install readline
-brew install sqlite
-brew install telnet
-brew install terraform
-brew install tmux
-brew install wget
-brew install xz
-brew install youtube-dl
+# Update and stuff
+brew update
+brew upgrade
+
+# install a bunch of stuff
 
 brew tap jmespath/jmespath
-brew install jp
+brew install ag \
+             bat \
+             cookiecutter \
+             direnv \
+             entr \
+             fzf \
+             gdbm \
+             gnupg \
+             gnutls \
+             htop \
+             jq \
+             jp \
+             mas \
+             mycli \
+             node \
+             noti \
+             oniguruma \
+             openssh \
+             openssl \
+             p7zip \
+             packer \
+             pgcli \
+             pigz \
+             pkg-config \
+             prettyping \
+             pwgen \
+             pyenv \
+             pyenv-virtualenv \
+             python \
+             python3 \
+             rclone \
+             readline \
+             screen \
+             sqlite \
+             ssh-copy-id \
+             telnet \
+             terraform \
+             tmux \
+             xz \
+             youtube-dl 
+
+# Install GNU core utilities (those that come with macOS are outdated).
+# Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
+brew install coreutils
+ln -s "${BREW_PREFIX}/bin/gsha256sum" "${BREW_PREFIX}/bin/sha256sum"
+
+# Install some other useful utilities like `sponge`.
+brew install moreutils
+
+# Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed.
+brew install findutils
+
+# Install GNU `sed`, overwriting the built-in `sed`.
+brew install gnu-sed --with-default-names
+
+# Install Bash 4.
+brew install bash
+brew install bash-completion2
+
+# Switch to using brew-installed bash as default shell
+if ! fgrep -q "${BREW_PREFIX}/bin/bash" /etc/shells; then
+  echo "${BREW_PREFIX}/bin/bash" | sudo tee -a /etc/shells;
+  chsh -s "${BREW_PREFIX}/bin/bash";
+fi;
+
+# Wget with IRI support
+brew install wget --with-iri
+
+# Install updated vim    
+brew install vim --with-override-system-vi
+
+# Install font tools.
+brew tap bramstein/webfonttools
+brew install sfnt2woff
+brew install sfnt2woff-zopfli
+brew install woff2
+
+# done
+brew cleanup
