@@ -110,5 +110,9 @@ sudo dseditgroup -o edit -a thebaron -t user docker
 sudo chown root:docker /usr/local/bin/docker-machine-driver-xhyve
 sudo chmod u+s         /usr/local/bin/docker-machine-driver-xhyve
 
+# Install kubernets-y stuff
+brew install helm \
+             kubectl \
+             skaffold
 # done
 brew cleanup
