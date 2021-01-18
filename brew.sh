@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 
 # install brew if needed
-brew commands  2&>1 > /dev/null || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+brew commands 2>&1 > /dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
 # Update and stuff
 brew update
@@ -12,19 +12,22 @@ brew upgrade
 brew tap jmespath/jmespath
 
 brew install ag \
+             aria2 \
              bat \
              cmake \
              cookiecutter \
+             coreutils \
              direnv \
              entr \
+             findutils \
              fzf \
              gdbm \
              gnupg \
+             gnu-sed \
              gnutls \
              htop \
              jq \
-             jp \
-             mas \
+             moreutils \
              mycli \
              node \
              noti \
@@ -50,38 +53,29 @@ brew install ag \
              terraform \
              tmux \
              tree \
+             vim \
+             vips \
+             wget \
              xz \
              youtube-dl 
 
-# Install GNU core utilities (those that come with macOS are outdated).
+# These don't work yet on M1
+[ $(uname -p) != "arm" ] && brew install \
+             jp \
+             mas 
+
 # Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
-brew install coreutils
-ln -s "${BREW_PREFIX}/bin/gsha256sum" "${BREW_PREFIX}/bin/sha256sum"
-
-# Install some other useful utilities like `sponge`.
-brew install moreutils
-
-# Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed.
-brew install findutils
-
-# Install GNU `sed`, overwriting the built-in `sed`.
-brew install gnu-sed 
+ln -s "${HOMEBREW_PREFIX}/bin/gsha256sum" "${HOMEBREW_PREFIX}/bin/sha256sum"
 
 # Install Bash 4.
 brew install bash
 brew install bash-completion2
 
 # Switch to using brew-installed bash as default shell
-if ! fgrep -q "${BREW_PREFIX}/bin/bash" /etc/shells; then
-  echo "${BREW_PREFIX}/bin/bash" | sudo tee -a /etc/shells;
-  chsh -s "${BREW_PREFIX}/bin/bash";
+if ! fgrep -q "${HOMEBREW_PREFIX}/bin/bash" /etc/shells; then
+  echo "${HOMEBREW_PREFIX}/bin/bash" | sudo tee -a /etc/shells;
+  chsh -s "${HOMEBREW_PREFIX}/bin/bash";
 fi;
-
-# Wget with IRI support
-brew install wget 
-
-# Install updated vim    
-brew install vim 
 
 # Install font tools.
 brew tap bramstein/webfonttools
@@ -95,20 +89,16 @@ brew install brew-cask-completion \
              django-completion \
              pip-completion 
 
-# Install Docker
-brew install docker \ 
-             docker-machine \
-             docker-machine-driver-xhyve
+# Install Docker on Intel on Intel on Intel
+[ $(uname -p) != "arm" ] && brew install docker \
+                                         docker-machine \
+                                         docker-machine-driver-xhyve && \
+                            brew services start docker-machine && \
+                            sudo dseditgroup -o create docker && \
+                            sudo dseditgroup -o edit -a thebaron -t user docker && \
+                            sudo chown root:docker ${HOMEBREW_PREFIX}/bin/docker-machine-driver-xhyve && \
+                            sudo chmod u+s         ${HOMEBREW_PREFIX}/bin/docker-machine-driver-xhyve
 
-brew services start docker-machine
-
-# Add docker group
-sudo dseditgroup -o create docker
-sudo dseditgroup -o edit -a thebaron -t user docker
-
-# Make sure xhyve is setuid
-sudo chown root:docker /usr/local/bin/docker-machine-driver-xhyve
-sudo chmod u+s         /usr/local/bin/docker-machine-driver-xhyve
 
 # Install kubernets-y stuff
 brew install helm \

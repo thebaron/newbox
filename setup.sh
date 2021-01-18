@@ -3,14 +3,30 @@
 # install fzf; assumes fzf is installed already.
 $(brew --prefix)/opt/fzf/install
 
-# install iterm2
-curl -so ~/Downloads/iTerm2.zip https://iterm2.com/downloads/stable/iTerm2-3_3_7.zip
-unzip -d /Applications/ ~/Downloads/iTerm2.zip
+# install iterm2 if needed
+if [ ! -d /Applications/iTerm.app/ ]; then
+    curl -so ~/Downloads/iTerm2.zip https://iterm2.com/downloads/stable/iTerm2-3_3_7.zip
+    unzip -d /Applications/ ~/Downloads/iTerm2.zip
+fi
 
 # install Visual Studio Code
-curl -so ~/Downloads/VSCode.zip -L https://update.code.visualstudio.com/latest/darwin/stable
-unzip -d /Applications/ ~/Downloads/VSCode.zip
-ln -s '/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code' /usr/local/bin/code
+INSTALL_INSIDERS=TRUE
+VSC_NEED_INSTALL=$(test -d ${HOMEBREW_PREFIX}/bin/code; echo $?)
+if [ VSC_NEED_INSTALL = 1 ]; then
+    if [ "z$INSTALL_INSIDERS" != "zTRUE" ]; then 
+        curl -so ~/Downloads/VSCode.zip \
+             -L https://update.code.visualstudio.com/latest/darwin/stable
+        unzip -d /Applications/ ~/Downloads/VSCode.zip
+        ln -fs '/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code' ${HOMEBREW_PREFIX}/bin/code
+    
+    else 
+
+        curl -so ~/Downloads/VSCode.zip \
+              -L https://az764295.vo.msecnd.net/insider/4a875e23d20b64504a818834f3fa4c40adb8d480/VSCode-darwin-arm64.zip
+        unzip -d /Applications/ ~/Downloads/VSCode.zip
+        ln -fs '/Applications/Visual Studio Code - Insiders.app/Contents/Resources/app/bin/code' ${HOMEBREW_PREFIX}/bin/code
+    fi # install insiders or reg
+fi # Needs install
 
 # Ensure vscode is installed 
 if which code &> /dev/null; then
@@ -33,7 +49,7 @@ if which code &> /dev/null; then
     code --install-extension jinsihou.diff-tool
     code --install-extension msjsdiag.debugger-for-chrome
     code --install-extension octref.vetur
-    code --install-extension platformio.platformio-ide
+    [ $(uname -p) != "arm" ] && code --install-extension platformio.platformio-ide
     code --install-extension searKing.preview-vscode
     code --install-extension webfreak.debug
     code --install-extension zhuangtongfa.Material-theme
