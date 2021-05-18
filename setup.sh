@@ -62,9 +62,17 @@ else
     echo "Set up Visual Studio Code and add the code CLI interface and then run this again."
 fi
 
+### 
+### gcloud
+###
+
 echo Installing Google Cloud GCP support (gcloud)
 export CLOUDSDK_CORE_DISABLE_PROMPTS=1
 curl https://sdk.cloud.google.com | bash
+
+###
+### go
+###
 
 echo Installing go 1.16.4...
 GO_ARCH=$(uname -m)
@@ -73,3 +81,16 @@ echo Installing go $GO_VER for $GO_ARCH...
 
 curl -L https://golang.org/dl/go$GO_VER.darwin-$GO_ARCH.pkg > ~/Downloads/go.pkg
 sudo installer -pkg ~/Downloads/go.pkg -target /
+
+###
+### protoc
+###
+
+PROTO_VER=3.17.0
+echo Installing v$PROTO_VER of protocol buffers
+curl -L https://github.com/protocolbuffers/protobuf/releases/download/v$PROTO_VER/protoc-$PROTO_VER-osx-x86_64.zip > ~/Downloads/protoc.zip
+unzip -d /tmp/protox ~/Downloads/protoc.zip 
+# remove quarantine so it runs
+sudo xattr -r -d com.apple.quarantine /tmp/protox/
+cd /tmp/protox
+find bin include | sudo cpio -dpvm /usr/local/
