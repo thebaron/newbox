@@ -63,4 +63,13 @@ else
 fi
 
 echo Installing Google Cloud GCP support (gcloud)
+export CLOUDSDK_CORE_DISABLE_PROMPTS=1
 curl https://sdk.cloud.google.com | bash
+
+echo Installing go 1.16.4...
+GO_ARCH=$(uname -m)
+GO_VER=1.16.4
+echo Installing go $GO_VER for $GO_ARCH...
+
+curl -L https://golang.org/dl/go$GO_VER.darwin-$GO_ARCH.pkg > ~/Downloads/go.pkg
+sudo installer -pkg ~/Downloads/go.pkg -target /
