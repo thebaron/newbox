@@ -10,7 +10,7 @@ if [ ! -d /Applications/iTerm.app/ ]; then
 fi
 
 # install Visual Studio Code
-INSTALL_INSIDERS=TRUE
+INSTALL_INSIDERS=FALSE
 VSC_NEED_INSTALL=$(test -d ${HOMEBREW_PREFIX}/bin/code; echo $?)
 if [ VSC_NEED_INSTALL = 1 ]; then
     if [ "z$INSTALL_INSIDERS" != "zTRUE" ]; then 
@@ -61,3 +61,6 @@ else
     echo "Cant install VSC plugins."
     echo "Set up Visual Studio Code and add the code CLI interface and then run this again."
 fi
+
+echo Installing Google Cloud GCP support (gcloud)
+curl https://sdk.cloud.google.com | bash
