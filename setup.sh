@@ -94,3 +94,10 @@ unzip -d /tmp/protox ~/Downloads/protoc.zip
 sudo xattr -r -d com.apple.quarantine /tmp/protox/
 cd /tmp/protox
 find bin include | sudo cpio -dpvm /usr/local/
+
+### 
+### go protoc
+###
+
+go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.1
+go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.26
