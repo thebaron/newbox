@@ -14,7 +14,7 @@ eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
 # Add ssh keys
-/usr/bin/ssh-add -AK
+/usr/bin/ssh-add --apple-use-keychain --apple-load-keychain
 
 # homebrew shell completion loader
 if type brew 2&>/dev/null; then
