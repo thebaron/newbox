@@ -1,0 +1,65 @@
+{
+  "alfredtheme" : {
+    "result" : {
+      "textSpacing" : 5,
+      "subtext" : {
+        "size" : 14,
+        "colorSelected" : "#FFFFFFFF",
+        "font" : "Source Code Pro",
+        "color" : "#FFFFFF9A"
+      },
+      "shortcut" : {
+        "size" : 16,
+        "colorSelected" : "#FFFFFFFF",
+        "font" : "System",
+        "color" : "#FFFFFF7E"
+      },
+      "backgroundSelected" : "#76B900FF",
+      "text" : {
+        "size" : 21,
+        "colorSelected" : "#FFFFFFFF",
+        "font" : "Rockwell",
+        "color" : "#76B900DB"
+      },
+      "iconPaddingHorizontal" : 7,
+      "roundness" : 8,
+      "paddingVertical" : 3,
+      "iconSize" : 40
+    },
+    "search" : {
+      "backgroundSelected" : "#76B90075",
+      "paddingHorizontal" : 7,
+      "spacing" : 9,
+      "text" : {
+        "size" : 44,
+        "colorSelected" : "#FFFFFFFF",
+        "font" : "SF Fourche",
+        "color" : "#FFFFFFFF"
+      },
+      "background" : "#00000068",
+      "roundness" : 8,
+      "paddingVertical" : 5
+    },
+    "window" : {
+      "color" : "#76B9005C",
+      "paddingHorizontal" : 9,
+      "width" : 700,
+      "borderPadding" : 0,
+      "borderColor" : "#0000007F",
+      "blur" : 0,
+      "roundness" : 15,
+      "paddingVertical" : 9
+    },
+    "credit" : "Baron Chandler",
+    "visualEffectMode" : 2,
+    "separator" : {
+      "color" : "#CBCBCBF3",
+      "thickness" : 0
+    },
+    "scrollbar" : {
+      "color" : "#358188FF",
+      "thickness" : 2
+    },
+    "name" : "nvidia"
+  }
+}
