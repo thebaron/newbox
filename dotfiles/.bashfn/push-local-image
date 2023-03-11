@@ -1,0 +1,14 @@
+function push_local_image() {
+
+    local image=$1
+
+    # grab the IPs from the cluster into a list
+    HOSTLIST=$(kubectl get nodes -ojson | jq -r '.items | map(.metadata.annotations."k3s.io/internal-ip") | .[]')
+
+    # push the image over to each node
+    for host in $HOSTLIST; do
+        docker save ${image} | ssh ubuntu@${host} sudo k3s ctr images import -
+    done
+}
+
+
