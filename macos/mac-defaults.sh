@@ -16,7 +16,7 @@ sudo defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262
 # defaults write com.apple.frameworks.diskimages skip-verify-locked -bool true
 # defaults write com.apple.frameworks.diskimages skip-verify-remote -bool true
 
-# Avoid creating .DS_Store files on network volumes
+# Avoid creating .DS_Store files on network volumes and USB drives
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
@@ -26,22 +26,31 @@ defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 # Display full POSIX path as Finder window title
 defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
 
+# Finder: show all filename extensions
+# Disable the warning when changing a file extension
+# Disable the warning before emptying the Trash
+# When performing a search, search the current folder by default
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+defaults write com.apple.finder WarnOnEmptyTrash -bool false
+defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+
+
 ###############################################################################
 # Save and Print
 ###############################################################################
 
 # save panel expanded
-defaults write -g NSNavPanelExpandedStateForSaveMode -bool true && \
-defaults write -g NSNavPanelExpandedStateForSaveMode2 -bool true && \
-defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true && \
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
 
 # expand print panel
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true && \
-defaults write -g PMPrintingExpandedStateForPrint -bool true && \
-defaults write -g PMPrintingExpandedStateForPrint2 -bool true
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true && \
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 
 defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false && \
-defaults write -g NSDocumentSaveNewDocumentsToCloud -bool false
+defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 
 defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 defaults write com.apple.helpviewer DevMode -bool true
@@ -51,6 +60,9 @@ defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int
 ###############################################################################
 # The Fucking Dock nonsense
 ###############################################################################
+
+# Hide indicator lights for open applications in the Dock
+defaults write com.apple.dock show-process-indicators -bool false
 
 # focus follows mouse in apple terminal
 defaults write com.apple.Terminal FocusFollowsMouse -string YES
@@ -75,6 +87,34 @@ defaults write com.apple.dock mru-spaces -bool false
 
 # Disable the Launchpad gesture (pinch with thumb and three fingers)
 defaults write com.apple.dock showLaunchpadGestureEnabled -int 0
+
+# Increase window resize speed for Cocoa applications
+defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
+
+# Save to disk (not to iCloud) by default
+defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+
+# Automatically quit printer app once the print jobs complete
+defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
+
+# Disable automatic termination of inactive apps
+defaults write NSGlobalDomain NSDisableAutomaticTermination -bool true
+
+# Disable automatic capitalization as it’s annoying when typing code
+defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
+
+# Disable smart dashes as they’re annoying when typing code
+defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
+
+# Disable automatic period substitution as it’s annoying when typing code
+defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
+
+# Disable smart quotes as they’re annoying when typing code
+defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
+
+# Disable auto-correct as it's just annoying, period
+defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false 
+
 
 ###############################################################################
 # Usability/UI
@@ -104,7 +144,7 @@ defaults write com.apple.dock wvous-bl-modifier -int 0
 # Follow the keyboard focus while zoomed in
 defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
 
-# Some finder settings - deskotp icons, window settings ... cuz I'm old
+# Some finder settings - desktop icons, window settings ... cuz I'm old
 # and I remember when the Finder showed shit on the desktop.
 #
 defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true && \
@@ -117,6 +157,9 @@ defaults write com.apple.finder ShowStatusBar -bool true && \
 defaults write com.apple.finder NewWindowTarget -string "PfLo" && \
 defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}" && \
 killall Finder
+
+# Speed up expose
+defaults write com.apple.dock expose-animation-duration -float 0.05
 
 # Also, my mac is not an damned iphone:
 # no power chime
