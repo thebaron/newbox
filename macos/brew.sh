@@ -3,6 +3,10 @@
 # install brew if needed
 brew commands 2>&1 > /dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
+export PATH="/opt/homebrew/bin:$PATH"
+
+HOMEBREW_PREFIX=$(brew --prefix)
+
 # Update and stuff
 brew update
 brew upgrade
@@ -85,7 +89,7 @@ HOMEBREW_NO_INSTALL_CLEANUP=1 brew install ${PKG[@]} ${PKG_EXTRAS[@]}
 
 
 # Install some completions
-HOMEBREW_NO_INSTALL_CLEANUP=1 brew install bash-completion2 \
+HOMEBREW_NO_INSTALL_CLEANUP=1 brew install bash-completion@2 \
              brew-cask-completion \
              django-completion \
              pip-completion 
