@@ -39,7 +39,7 @@ set modelines=4
 set exrc
 set secure
 " Enable line numbers
-set number
+" set number
 " Enable syntax highlighting
 syntax on
 " Highlight current line

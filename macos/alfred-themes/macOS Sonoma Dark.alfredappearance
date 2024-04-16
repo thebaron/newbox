@@ -1,0 +1,65 @@
+{
+  "alfredtheme" : {
+    "result" : {
+      "textSpacing" : 7,
+      "subtext" : {
+        "size" : 13,
+        "colorSelected" : "#FEFFFFA4",
+        "font" : "System Light",
+        "color" : "#C9CCCC4C"
+      },
+      "shortcut" : {
+        "size" : 14,
+        "colorSelected" : "#FEFFFFFF",
+        "font" : "System",
+        "color" : "#FEFFFF95"
+      },
+      "backgroundSelected" : "#675982FF",
+      "text" : {
+        "size" : 16,
+        "colorSelected" : "#FAFFF6FF",
+        "font" : "System",
+        "color" : "#C3C6C6DC"
+      },
+      "iconPaddingHorizontal" : 7,
+      "roundness" : 7,
+      "paddingVertical" : 8,
+      "iconSize" : 36
+    },
+    "search" : {
+      "backgroundSelected" : "#B2D8FF00",
+      "paddingHorizontal" : 6,
+      "spacing" : 0,
+      "text" : {
+        "size" : 40,
+        "colorSelected" : "#FEFFFFFF",
+        "font" : "System Bold",
+        "color" : "#E0E0E0CC"
+      },
+      "background" : "#CFB3FF00",
+      "roundness" : 0,
+      "paddingVertical" : 11
+    },
+    "window" : {
+      "color" : "#2E2931FF",
+      "paddingHorizontal" : 21,
+      "width" : 656,
+      "borderPadding" : 0,
+      "borderColor" : "#FEFFFF00",
+      "blur" : 0,
+      "roundness" : 9,
+      "paddingVertical" : 16
+    },
+    "credit" : "Baron Chandler",
+    "visualEffectMode" : 1,
+    "separator" : {
+      "color" : "#0000000F",
+      "thickness" : 0
+    },
+    "scrollbar" : {
+      "color" : "#A9A9A9FF",
+      "thickness" : 0
+    },
+    "name" : "macOS Sonoma Dark"
+  }
+}

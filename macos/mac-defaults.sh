@@ -173,7 +173,7 @@ defaults write -g InitialKeyRepeat -int 25
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 # remote login allowed 
-sudo launchctl load -w /System/Library/LaunchDaemons/ssh.plist
+# sudo launchctl load -w /System/Library/LaunchDaemons/ssh.plist
 
 # screensaver security
 defaults write com.apple.screensaver askForPasswordDelay -int 0

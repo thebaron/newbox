@@ -4,11 +4,10 @@ git || xcode-select --install
 
 git clone https://github.com/thebaron/newbox.git
 
-cd newbox/macos 
+cd newbox/macos
 
 # Install brew stuff
 ./brew.sh
-HOMEBREW_PREFIX=$(brew --prefix)
 
 # Install iTerm
 ./iterm.sh
@@ -17,6 +16,7 @@ HOMEBREW_PREFIX=$(brew --prefix)
 ./vscode.sh
 
 # Setup fzf
+export PATH=/opt/homebrew/bin/:$PATH
 $(brew --prefix)/opt/fzf/install --all
 
 # use bash5 as the shell: screw zsh, sorry.
