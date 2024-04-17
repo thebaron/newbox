@@ -18,41 +18,56 @@ brew tap homebrew/cask-fonts
 
 # standard packages
 PKG=(ag \
+     ansible \
      aria2 \
+     asciinema \
      bash \
      bat \
+     cdrtools \
      cmake \
      cookiecutter \
      coreutils \
      direnv \
      entr \
+     ffmpeg \
      findutils \
+     flac \
      fzf \
      gdbm \
      gnupg \
      gnu-sed \
      gnutls \
+     go-task \
      htop \
      jq \
      jp \
      mas \
+     media-info \
+     minicom \
      moreutils \
+     mp4v2 \
+     mpg123 \
+     mpv \
      mycli \
      node \
      noti \
+     numpy \
      oniguruma \
      openssh \
      openssl \
      p7zip \ \
      packer \
+     par2 \
      pgcli \
      pigz \
+     pipx \
      pkg-config \
      prettyping \
      pwgen \
      pyenv \
      pyenv-virtualenv \
      python3 \
+     qemu \
      readline \
      screen \
      sqlite \
@@ -64,6 +79,7 @@ PKG=(ag \
      vips \
      wget \
      xz \
+     zeromq \
     ) 
 
 # extras
