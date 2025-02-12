@@ -1,0 +1,34 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15" version="26.0.11">
+  <diagram name="Page-1" id="mBVSgN3KfDG8GP8beKgD">
+    <mxGraphModel dx="281" dy="182" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="kmqAIvSsTAzHUEWANIrY-1" value="`" style="strokeColor=#666666;html=1;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;outlineConnect=0;shadow=0;dashed=0;shape=mxgraph.rackGeneral.rackCabinet3;fillColor2=#f4f4f4;container=1;collapsible=0;childLayout=rack;allowGaps=1;marginLeft=33;marginRight=9;marginTop=21;marginBottom=22;textColor=#666666;numDisp=ascend;" vertex="1" parent="1">
+          <mxGeometry x="7" y="41" width="125" height="179" as="geometry" />
+        </mxCell>
+        <mxCell id="kmqAIvSsTAzHUEWANIrY-12" value="" style="strokeColor=#666666;html=1;labelPosition=right;align=left;spacingLeft=15;shadow=0;dashed=0;outlineConnect=0;shape=mxgraph.rackGeneral.plate;fillColor=light-dark(#000000, #262626);" vertex="1" parent="kmqAIvSsTAzHUEWANIrY-1">
+          <mxGeometry x="33" y="36" width="83" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="kmqAIvSsTAzHUEWANIrY-7" value="" style="strokeColor=#666666;html=1;labelPosition=right;align=left;spacingLeft=15;shadow=0;dashed=0;outlineConnect=0;shape=mxgraph.rackGeneral.plate;fillColor=#e8e8e8;" vertex="1" parent="kmqAIvSsTAzHUEWANIrY-1">
+          <mxGeometry x="33" y="71" width="83" height="12" as="geometry" />
+        </mxCell>
+        <mxCell id="kmqAIvSsTAzHUEWANIrY-8" value="" style="strokeColor=#666666;html=1;labelPosition=right;align=left;spacingLeft=15;shadow=0;dashed=0;outlineConnect=0;shape=mxgraph.rackGeneral.plate;fillColor=#e8e8e8;" vertex="1" parent="kmqAIvSsTAzHUEWANIrY-1">
+          <mxGeometry x="33" y="84" width="83" height="11" as="geometry" />
+        </mxCell>
+        <mxCell id="kmqAIvSsTAzHUEWANIrY-4" value="" style="strokeColor=#666666;html=1;labelPosition=right;align=left;spacingLeft=15;shadow=0;dashed=0;outlineConnect=0;shape=mxgraph.rack.general.1u_rack_server;" vertex="1" parent="1">
+          <mxGeometry x="150" y="110" width="160" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="kmqAIvSsTAzHUEWANIrY-6" value="" style="shape=mxgraph.rack.oracle.sun_blade_6000_enclosure;html=1;labelPosition=right;align=left;spacingLeft=15;dashed=0;shadow=0;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="40" y="140" width="83" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="kmqAIvSsTAzHUEWANIrY-9" value="" style="strokeColor=#666666;html=1;labelPosition=right;align=left;spacingLeft=15;shadow=0;dashed=0;outlineConnect=0;shape=mxgraph.rackGeneral.plate;fillColor=#e8e8e8;" vertex="1" parent="1">
+          <mxGeometry x="40" y="100" width="50" height="11" as="geometry" />
+        </mxCell>
+        <mxCell id="kmqAIvSsTAzHUEWANIrY-10" value="" style="html=1;verticalLabelPosition=bottom;verticalAlign=top;outlineConnect=0;shadow=0;dashed=0;shape=mxgraph.rack.hpe_aruba.switches.j993a_8_port_1g_10gbe_sfpplus_with_macsec_v3_zl2_module;" vertex="1" parent="1">
+          <mxGeometry x="41" y="68" width="57" height="9" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
