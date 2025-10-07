@@ -392,3 +392,5 @@ defaults write com.google.Chrome DisablePrintPreview -bool true
 # Expand the print dialog by default
 defaults write com.google.Chrome PMPrintingExpandedStateForPrint2 -bool true
 
+# Disable the "ding" i'm charging "ding" i'm charging!  you . are . not a. fucking ... iphone.
+defaults write com.apple.PowerChime ChimeOnAllHardware -bool false; killall PowerChime
