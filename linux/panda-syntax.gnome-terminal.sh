@@ -7,13 +7,13 @@ list=['619f29ad-4a95-4b60-bab2-1206f0092b88']
 
 [:619f29ad-4a95-4b60-bab2-1206f0092b88]
 background-color='rgb(37,40,42)'
-bold-color='rgb(117,116,116)'
+bold-color='rgb(243,243,243)'
 bold-color-same-as-fg=false
 cursor-background-color='rgb(111,118,130)'
 cursor-colors-set=true
 cursor-foreground-color='rgb(248,248,248)'
 font='Source Code Pro 13'
-foreground-color='rgb(243,243,243)'
+foreground-color='rgb(201,201,201)'
 highlight-background-color='rgb(117,116,116)'
 highlight-colors-set=true
 highlight-foreground-color='rgb(230,230,230)'
@@ -21,5 +21,5 @@ palette=['rgb(7,54,66)', 'rgb(220,50,47)', 'rgb(133,153,0)', 'rgb(181,137,0)', '
 scrollback-lines=15000
 use-system-font=false
 use-theme-colors=false
-visible-name='panda'
+visible-name='panda-syntax'
 EOF

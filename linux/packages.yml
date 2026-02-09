@@ -1,0 +1,216 @@
+# packages.yml - Central configuration for newbox Linux setup
+# All modules read from this file via yq
+
+prerequisites:
+  - curl
+  - wget
+  - git
+  - gnupg
+  - apt-transport-https
+  - ca-certificates
+  - software-properties-common
+  - flatpak
+  - gnome-software-plugin-flatpak
+  - unzip
+  - build-essential
+
+apt_repos:
+  - name: hashicorp
+    key_url: "https://apt.releases.hashicorp.com/gpg"
+    key_path: "/usr/share/keyrings/hashicorp-archive-keyring.gpg"
+    repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com {{ codename }} main"
+    list_file: "hashicorp.list"
+
+  - name: helm
+    key_url: "https://packages.buildkite.com/helm-linux/helm-debian/gpgkey"
+    key_path: "/usr/share/keyrings/helm.gpg"
+    repo: "deb [signed-by=/usr/share/keyrings/helm.gpg] https://packages.buildkite.com/helm-linux/helm-debian/any/ any main" 
+    list_file: "helm-stable-debian.list"
+
+  - name: 1password
+    key_url: "https://downloads.1password.com/linux/keys/1password.asc"
+    key_path: "/usr/share/keyrings/1password-archive-keyring.gpg"
+    repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/amd64 stable main"
+    list_file: "1password.list"
+    extra_steps:
+      - "sudo mkdir -p /etc/debsig/policies/AC2D62742012EA22/ /usr/share/debsig/keyrings/AC2D62742012EA22"
+      - "curl -sS https://downloads.1password.com/linux/debian/debsig/1password.pol | sudo tee /etc/debsig/policies/AC2D62742012EA22/1password.pol > /dev/null"
+      - "curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --dearmor --yes --output /usr/share/debsig/keyrings/AC2D62742012EA22/debsig.gpg"
+
+  - name: gcp
+    key_url: "https://packages.cloud.google.com/apt/doc/apt-key.gpg"
+    key_path: "/usr/share/keyrings/cloud.google.gpg"
+    repo: "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main"
+    list_file: "google-cloud-sdk.list"
+
+  - name: kubernetes
+    key_url: "https://pkgs.k8s.io/core:/stable:/v1.31/deb/Release.key"
+    key_path: "/usr/share/keyrings/kubernetes-apt-keyring.gpg"
+    repo: "deb [signed-by=/usr/share/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.31/deb/ /"
+    list_file: "kubernetes.list"
+
+apt_packages:
+  - 1password
+  - silversearcher-ag
+  - aria2
+  - bat
+  - bridge-utils
+  - containerd.io
+  - cpu-checker
+  - direnv
+  - docker-compose-plugin
+  - entr
+  - fd-find
+  - fzf
+  - gdb
+  - ghostty
+  - helm
+  - htop
+  - jq
+  - kubectl
+  - libfuse2t64
+  - libvirt-daemon-system
+  - libvirt-clients
+  - nfs-common
+  - nodejs
+  - p7zip
+  - packer
+  - podman
+  - prettyping
+  - pwgen
+  - qemu-kvm
+  - ripgrep
+  - screen
+  - sqlite3
+  - terraform
+  - tmux
+  - virt-manager
+  - yamllint
+
+flatpak_apps:
+  - remote: flathub
+    id: org.mozilla.firefox
+    name: Firefox
+  - remote: flathub
+    id: app.zen_browser.zen
+    name: Zen
+  - remote: flathub
+    id: com.slack.Slack
+    name: Slack
+  - remote: flathub
+    id: com.discordapp.Discord
+    name: Discord
+  - remote: flathub
+    id: com.visualstudio.code
+    name: VS Code
+  - remote: flathub
+    id: org.gimp.GIMP
+    name: GIMP
+  - remote: flathub
+    id: org.videolan.VLC
+    name: VLC
+  - remote: flathub
+    id: org.signal.Signal
+    name: Signal
+  - remote: flathub
+    id: com.obsproject.Studio
+    name: OBS Studio
+  - remote: flathub
+    id: io.podman_desktop.PodmanDesktop
+    name: Podman Desktop
+  - remote: flathub
+    id: com.mattjakeman.ExtensionManager
+    name: Extension Manager
+
+snap_packages:
+  - name: google-cloud-cli
+    classic: true
+  - name: lxd
+    classic: false
+
+binaries:
+  - name: go
+    version: "1.25.7"
+    check_cmd: /usr/local/go/bin/go
+    check_version_cmd: "/usr/local/go/bin/go version | grep -oP '\\d+\\.\\d+\\.\\d+'"
+    url: "https://golang.org/dl/go{{ version }}.linux-amd64.tar.gz"
+    archive_type: tar.gz
+    install_method: extract
+    install_path: /usr/local
+    pre_install: "sudo rm -rf /usr/local/go"
+    post_install: "sudo ln -sf /usr/local/go/bin/go /usr/local/bin/go"
+
+  - name: awscli
+    version: "2"
+    check_cmd: aws
+    check_version_cmd: "aws --version | grep -oP 'aws-cli/\\K[\\d.]+' | cut -d. -f1"
+    url: "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip"
+    archive_type: zip
+    install_method: installer
+    installer_cmd: "sudo {{ tmp_dir }}/aws/install --update"
+
+  - name: eksctl
+    version: latest
+    check_cmd: eksctl
+    url: "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_Linux_amd64.tar.gz"
+    archive_type: tar.gz
+    install_method: binary
+    install_path: /usr/local/bin/eksctl
+
+  - name: kubebuilder
+    version: "4.11.1"
+    check_cmd: kubebuilder
+    check_version_cmd: "kubebuilder version | grep -oP 'KubeBuilder:\\s+v[\\d.]+'|cut -d':' -f2 | sed -e 's/[^0-9.]//g'"
+    url: "https://github.com/kubernetes-sigs/kubebuilder/releases/download/v{{ version }}/kubebuilder_linux_amd64"
+    archive_type: binary
+    install_method: binary
+    install_path: /usr/local/bin/kubebuilder
+
+  - name: kustomize
+    version: "5.8.0"
+    check_cmd: kustomize
+    check_version_cmd: "kustomize version | grep -oP '\\d+\\.\\d+\\.\\d+'"
+    url: "https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv{{ version }}/kustomize_v{{ version }}_linux_amd64.tar.gz"
+    archive_type: tar.gz
+    install_method: binary
+    install_path: /usr/local/bin/kustomize
+
+  - name: cursor
+    version: "latest"
+    check_cmd: cursor
+    check_version_cmd: cursor 
+    url: "https://downloader.cursor.sh/linux/appImage/x64"
+    archive_type: binary
+    install_method: installer
+    installer_cmd: "sudo chmod +x {{ tmp_dir }}/x64; sudo mv {{ tmp_dir }}/x64 {{ tmp_dir }}/cursor.AppImage; sudo {{ tmp_dir }}/cursor.AppImage"
+
+  - name: uv
+    version: "0.10.0"
+    check_cmd: uv
+    check_version_cmd: "uv --version | grep -oP 'uv\\s+[\\d.]+' | cut -d' ' -f2"
+    url: "https://astral.sh/uv/install.sh"
+    archive_type: script
+    script_env: UV_INSTALL_DIR=/usr/local/bin
+  
+  - name: ghostty
+    version: "1.2.3"
+    check_cmd: ghostty
+    check_version_cmd: "ghostty --version | grep -oP 'Ghostty\\s+[\\d.]+' | cut -d' ' -f2"
+    url: "https://raw.githubusercontent.com/mkasberg/ghostty-ubuntu/HEAD/install.sh"
+    archive_type: script
+
+fonts:
+  archives:
+    - "../SF-Fourche.zip"
+    - "../TTF-source-code-pro-2.038R-ro-1.058R-it.zip"
+  target_dir: "{{ home }}/.local/share/fonts"
+
+gnome_extensions:
+  - uuid: "dash-to-dock@micxgx.gmail.com"
+    name: "Dash to Dock"
+  - uuid: "appindicatorsupport@rgcjonas.gmail.com"
+    name: "AppIndicator Support"
+
+dotfiles:
+  source_dir: "{{ repo_root }}/dotfiles"
+  target_dir: "{{ home }}"

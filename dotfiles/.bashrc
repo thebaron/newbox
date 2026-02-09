@@ -23,35 +23,35 @@ shopt -s checkwinsize
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # load aliases
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+if [ -f ${HOME}/.bash_aliases ]; then
+    . ${HOME}/.bash_aliases
 fi
 
-# common env vars
-[ -f ~/.exports ] && \
-    . ~/.exports
+# iterm2 shell integration
+test -e "${HOME}/.iterm2_shell_integration.bash" && . "${HOME}/.iterm2_shell_integration.bash"
 
-[ -d ~/go/bin ] && \
+# common env vars
+[ -f ${HOME}/.exports ] && \
+    . ${HOME}/.exports
+
+[ -d ${HOME}/go/bin ] && \
     export GOPATH="$HOME/go"
            PATH="$HOME/go/bin:$PATH"
 
-[ -d ~/bin ] && \
+[ -d ${HOME}/bin ] && \
     export PATH="$HOME/bin:$PATH"
 
-[ -d ~/.local/bin ] && \
+[ -d ${HOME}/.local/bin ] && \
     export PATH="$HOME/.local/bin:$PATH"
 
 [ -d /$HOME/.pyenv/bin ] && \
    export PATH="$PATH:/$HOME/.pyenv/bin"
 
-[ -d /usr/local/kubebuilder/bin ] && \
-    export PATH="$PATH:/usr/local/kubebuilder/bin"
-
 [ -d /usr/local/go/bin ] && \
     export PATH="/usr/local/go/bin:$PATH"
 
-[ -f ~/.fzf.bash ] && \
-    source ~/.fzf.bash
+[ -f ${HOME}/.fzf.bash ] && \
+    source ${HOME}/.fzf.bash
 
 # node nvm
 export NVM_DIR="$HOME/.nvm"
@@ -59,16 +59,6 @@ export NVM_DIR="$HOME/.nvm"
     . "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \
     . "$NVM_DIR/bash_completion"
-
-# pyenv
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-
-# Add ssh keys
-/usr/bin/ssh-add --apple-use-keychain --apple-load-keychain
-
-# set up kubeconfig
-export KUBECONFIG=$HOME/.kube/config:$(printf "%s:"  $HOME/.kube/clusters/* | sed -e 's/:$//')
 
 # ensure ssh agent is running
 eval $(ssh-agent)
