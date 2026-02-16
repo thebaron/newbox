@@ -1,22 +1,25 @@
 .app {
     margin: 25px;
-    background-color: rgba(30, 30, 30, 0.7);
+    background-color: rgba(30, 33, 30, 0.9);
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 18px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3), 
                 0 10px 20px rgba(0, 0, 0, 0.3),
                 0 5px 5px rgba(0, 0, 0, 0.3);
     padding: 10px;
+    font-family: "DejaVu Sans";
 }
 
 .input {
     color: #ffffff;
-    font-size: 20px;
-    padding: 15px 10px; 
+    font-size: 36px;
+    padding: 8px 10px; 
+    font-family: "DejaVu Sans";
+    font-weight: bold;
 }
 
 .selected.item-box {
-    background-color: #007AFF;
+    background-color: #303f35;
     border-radius: 12px;
     margin: 4px 8px; 
 }
@@ -33,11 +36,13 @@
     color: #eeeeee;
     font-weight: bold;
     margin-left: 10px;
+    font-size: 125%;
 }
 
 .item-text {
     color: #bbbbbb;
     margin-left: 10px;
+    font-family: "DejaVu Sans";
 }
 
 .item-shortcut {
