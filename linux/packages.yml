@@ -93,8 +93,10 @@ apt_packages:
   - sqlite3
   - terraform
   - tmux
+  - ulauncher
   - uxplay
   - virt-manager
+  - xclip
   - yamllint
 
 flatpak_apps:
