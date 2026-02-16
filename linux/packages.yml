@@ -95,6 +95,7 @@ apt_packages:
   - tmux
   - ulauncher
   - uxplay
+  - vim
   - virt-manager
   - xclip
   - yamllint
