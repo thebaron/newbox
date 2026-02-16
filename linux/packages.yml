@@ -24,7 +24,7 @@ apt_repos:
   - name: helm
     key_url: "https://packages.buildkite.com/helm-linux/helm-debian/gpgkey"
     key_path: "/usr/share/keyrings/helm.gpg"
-    repo: "deb [signed-by=/usr/share/keyrings/helm.gpg] https://packages.buildkite.com/helm-linux/helm-debian/any/ any main" 
+    repo: "deb [signed-by=/usr/share/keyrings/helm.gpg] https://packages.buildkite.com/helm-linux/helm-debian/any/ any main"
     list_file: "helm-stable-debian.list"
 
   - name: 1password
@@ -49,6 +49,12 @@ apt_repos:
     repo: "deb [signed-by=/usr/share/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.31/deb/ /"
     list_file: "kubernetes.list"
 
+  - name: ppa-agornostal/ulauncher
+    key_url: "keyserver://keyserver.ubuntu.com/0xfaf1020699503176"
+    key_path: "/usr/share/keyrings/ulauncher-archive-keyring.gpg"
+    repo: "deb [signed-by=/usr/share/keyrings/ulauncher-archive-keyring.gpg] http://ppa.launchpad.net/agornostal/ulauncher/ubuntu {{ codename }} main"
+    list_file: "ulauncher.list"
+
 apt_packages:
   - 1password
   - silversearcher-ag
@@ -69,6 +75,7 @@ apt_packages:
   - jq
   - kubectl
   - libfuse2t64
+  - libgstreamer-plugins-bad1.0
   - libvirt-daemon-system
   - libvirt-clients
   - nfs-common
@@ -77,6 +84,8 @@ apt_packages:
   - packer
   - podman
   - prettyping
+  - pulseaudio-module-raop
+  - pulseaudio-module-zeroconf
   - pwgen
   - qemu-kvm
   - ripgrep
@@ -84,6 +93,7 @@ apt_packages:
   - sqlite3
   - terraform
   - tmux
+  - uxplay
   - virt-manager
   - yamllint
 
@@ -178,7 +188,7 @@ binaries:
   - name: cursor
     version: "latest"
     check_cmd: cursor
-    check_version_cmd: cursor 
+    check_version_cmd: cursor
     url: "https://downloader.cursor.sh/linux/appImage/x64"
     archive_type: binary
     install_method: installer
@@ -191,7 +201,7 @@ binaries:
     url: "https://astral.sh/uv/install.sh"
     archive_type: script
     script_env: UV_INSTALL_DIR=/usr/local/bin
-  
+
   - name: ghostty
     version: "1.2.3"
     check_cmd: ghostty

@@ -1,0 +1,16 @@
+{
+    "com.github.orcunulutas.ulauncher-token-generator": {
+        "id": "com.github.orcunulutas.ulauncher-token-generator",
+        "url": "https://github.com/orcunulutas/ulauncher-token-generator",
+        "updated_at": "2026-02-15T23:36:00.934417",
+        "last_commit": "e3a6e5082a4efb8f5e13f48d750e0564ed1373fb",
+        "last_commit_time": "2026-01-10T23:11:38"
+    },
+    "com.github.jack5github.ulauncher-steam": {
+        "id": "com.github.jack5github.ulauncher-steam",
+        "url": "https://github.com/jack5github/ulauncher-steam.git",
+        "updated_at": "2026-02-15T23:41:39.666680",
+        "last_commit": "8201b540f2ea955a5e8ce2fa7957b6c08850e3e5",
+        "last_commit_time": "2025-05-23T12:53:07"
+    }
+}

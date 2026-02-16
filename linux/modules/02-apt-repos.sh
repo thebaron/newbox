@@ -24,8 +24,19 @@ for i in $(seq 0 $((repo_count - 1))); do
 
     log_info "Adding repo: $name"
 
-    # Download and install GPG key
-    run_cmd bash -c "curl -fsSL '$key_url' | sudo gpg --dearmor --yes -o '$key_path'"
+    if [[ -n "$key_url" ]]; then
+        if [[ "$key_url" == keyserver://* ]]; then
+            # key_url format: keyserver://keyserver/0xkeyid
+            keyserver_info="${key_url#keyserver://}"
+            keyserver_host="${keyserver_info%%/*}"
+            keyid="${keyserver_info##*/}"
+            run_cmd bash -c "gpg --keyserver '$keyserver_host' --recv-keys '$keyid'"
+            run_cmd bash -c "gpg --export '$keyid' | sudo gpg --dearmor --yes -o '$key_path'"
+        else
+            # Download and install GPG key via HTTP(s)
+            run_cmd bash -c "curl -fsSL '$key_url' | sudo gpg --dearmor --yes -o '$key_path'"
+        fi
+    fi
 
     # Write sources list
     run_cmd bash -c "echo '$repo_line' | sudo tee /etc/apt/sources.list.d/${list_file} > /dev/null"
